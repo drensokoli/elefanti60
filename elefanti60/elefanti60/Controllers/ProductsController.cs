@@ -22,7 +22,7 @@ namespace elefanti60.Controllers
             return await _context.Products.ToListAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}")]   
         [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetByID(int id)

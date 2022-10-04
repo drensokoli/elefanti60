@@ -11,8 +11,8 @@ using elefanti60.Data;
 namespace elefanti60.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221004155619_DatabaseCreation")]
-    partial class DatabaseCreation
+    [Migration("20221004202445_MyFirstMigration")]
+    partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

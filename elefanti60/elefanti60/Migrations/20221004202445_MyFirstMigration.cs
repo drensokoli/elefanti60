@@ -4,7 +4,7 @@
 
 namespace elefanti60.Migrations
 {
-    public partial class DatabaseCreation : Migration
+    public partial class MyFirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
