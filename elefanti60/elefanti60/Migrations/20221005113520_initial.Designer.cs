@@ -11,8 +11,8 @@ using elefanti60.Data;
 namespace elefanti60.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221004165650_UserCreation")]
-    partial class UserCreation
+    [Migration("20221005113520_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

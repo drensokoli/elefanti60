@@ -12,6 +12,6 @@ namespace elefanti60.Models
         [Required]
         public string Category { get; set; }
         public int Stock { get; set; }
-        public decimal Price { get; set; }
+        public static decimal Price { get; set; }
     }
 }
