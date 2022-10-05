@@ -4,7 +4,7 @@
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public int Quantity { get; set; }
+        public int Quantity { get; set; } = 1;
         public decimal Price { get; set; }
         public decimal Total
         {
@@ -12,7 +12,7 @@
         }
         public CartItem( Product product) {
             ProductId = product.Id;
-            ProductName = ProductName;
+            ProductName = product.Title;
             Price = product.Price;
             Quantity = 1;
         }
