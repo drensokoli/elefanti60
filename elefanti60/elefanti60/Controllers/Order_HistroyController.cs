@@ -19,11 +19,19 @@ namespace elefanti60.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Product>> Get()
+        public async Task<IEnumerable<CartItem>> Get(int userId)
         {
-            return await _context.Products.ToListAsync();
-        }
+            var CartItem =  await _context.CartItem.Where(x=> x.UserId = userId).ToListAsync();
 
+            return CartItem;
+        }
+        public async Task<ActionResult> Create(ShoppingCart shoppingCart)
+        {
+            await _context.CartItem.AddAsync(CartItem);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetByID), new { id = product.Id }, product);
+        }
         //Pjesa pasi te krijohet shopping cart
 
         //[HttpGet("{id}")]
