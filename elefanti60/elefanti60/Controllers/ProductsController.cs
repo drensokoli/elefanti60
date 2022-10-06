@@ -53,11 +53,18 @@ namespace elefanti60.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> Create(Product product)
         {
+            var category = _context.Categories.FirstOrDefault(x => x.Name.Equals(product.Category));
+
+            if(category == null)
+            {
+                return NotFound();
+            }
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetByID), new { id = product.Id }, product);
         }
+
 
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

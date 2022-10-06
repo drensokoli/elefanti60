@@ -33,6 +33,16 @@ namespace elefanti60.Controllers
             return user == null ? NotFound() : Ok(user);
         }
 
+        [HttpPost("/{user}")]
+        public async Task<ActionResult> Login(string user, string password)
+        {
+            var useri = await _context.Users.FirstAsync(x => x.Username == user && x.Password == password);
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return Ok(useri);
+        }
 
         [HttpGet("username/{username}")]
         public async Task<IEnumerable<User>> GetByTitle(string username)
