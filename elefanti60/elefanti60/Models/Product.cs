@@ -13,5 +13,6 @@ namespace elefanti60.Models
         public string Category { get; set; }
         public int Stock { get; set; }
         public static decimal Price { get; set; }
+        public string PictureURL { get; set; }
     }
 }
