@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using elefanti60.Data;
 
@@ -11,9 +12,10 @@ using elefanti60.Data;
 namespace elefanti60.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221007140303_OrderHistory")]
+    partial class OrderHistory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -231,13 +233,13 @@ namespace elefanti60.Migrations
             modelBuilder.Entity("elefanti60.Models.OrderItem", b =>
                 {
                     b.HasOne("elefanti60.Models.OrderHistory", null)
-                        .WithMany("OrderedItems")
+                        .WithMany("Items")
                         .HasForeignKey("OrderHistoryId");
                 });
 
             modelBuilder.Entity("elefanti60.Models.OrderHistory", b =>
                 {
-                    b.Navigation("OrderedItems");
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("elefanti60.Models.ShoppingCart", b =>
