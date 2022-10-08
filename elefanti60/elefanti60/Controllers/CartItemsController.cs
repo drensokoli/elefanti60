@@ -62,8 +62,15 @@ namespace elefanti60.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Update(int id, CartItem cartItem)
         {
+            var product = _context.Products.FirstOrDefault(x => x.Id == cartItem.ProductId);
+
             if (id != cartItem.Id) return BadRequest();
             cartItem.Total = cartItem.Price * cartItem.Quantity;
+            if (product.Stock < cartItem.Quantity)
+            {
+                return BadRequest("Stock: " + product.Stock);
+            }
+
             _context.Entry(cartItem).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
