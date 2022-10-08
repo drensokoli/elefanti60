@@ -32,13 +32,6 @@ namespace elefanti60.Controllers
             var product = _context.Products.FirstOrDefault(x => x.Id == cartitemdto.ProductId);
             var item =  _context.CartItems.FirstOrDefault(x => x.ProductId == cartitemdto.ProductId && x.UserId == cartitemdto.UserId);
 
-            if (item != null)
-            {
-                item.Quantity += cartitemdto.Quantity;
-                _context.Entry(item).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-                return Ok(item);
-            }
 
             if (user == null || product == null)
             {
@@ -54,10 +47,24 @@ namespace elefanti60.Controllers
                 Total = cartitemdto.Quantity * product.Price
             };
 
+            //if (product.Stock < cartItem.Quantity)
+            //{
+            //    return BadRequest("Stock: "+product.Stock);
+            //}
 
-            if (product.Stock < cartItem.Quantity)
+            if (item != null)
             {
-                return BadRequest("Stock: "+product.Stock);
+                item.Quantity += cartitemdto.Quantity;
+
+                if (product.Stock < item.Quantity)
+                {
+                    return BadRequest("Stock: " + product.Stock);
+                }
+
+                item.Total = item.Price * item.Quantity;
+                _context.Entry(item).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return Ok(item);
             }
 
             _context.CartItems.Add(cartItem);
