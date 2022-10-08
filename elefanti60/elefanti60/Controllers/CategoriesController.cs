@@ -33,5 +33,32 @@ namespace elefanti60.Controllers
             return Ok(category);
         }
 
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> Update(int id, Category category)
+        {
+            if (id != category.Id) return BadRequest();
+            _context.Entry(category).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<ActionResult> Delete(int id)
+        {
+            var categoryToDelete = await _context.Categories.FindAsync(id);
+
+            if (categoryToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _context.Categories.Remove(categoryToDelete);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

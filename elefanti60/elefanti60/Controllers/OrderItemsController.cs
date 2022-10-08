@@ -49,8 +49,6 @@ namespace elefanti60.Controllers
                 _context.CartItems.Remove(item);
                 await _context.SaveChangesAsync();
             }
-
-
             return Ok();
         }
     }
