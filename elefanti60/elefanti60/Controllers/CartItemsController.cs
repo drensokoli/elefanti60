@@ -30,8 +30,17 @@ namespace elefanti60.Controllers
         {
             var user = _context.Users.FirstOrDefault(x => x.Id == cartitemdto.UserId);
             var product = _context.Products.FirstOrDefault(x => x.Id == cartitemdto.ProductId);
+            var item =  _context.CartItems.FirstOrDefault(x => x.ProductId == cartitemdto.ProductId && x.UserId == cartitemdto.UserId);
 
-            if(user == null || product == null)
+            if (item != null)
+            {
+                item.Quantity += cartitemdto.Quantity;
+                _context.Entry(item).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                return Ok(item);
+            }
+
+            if (user == null || product == null)
             {
                 return NotFound();
             }

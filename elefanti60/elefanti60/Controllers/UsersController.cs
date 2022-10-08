@@ -1,8 +1,10 @@
 ﻿using elefanti60.Data;
 using elefanti60.Models;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace elefanti60.Controllers
 {
@@ -33,15 +35,52 @@ namespace elefanti60.Controllers
             return user == null ? NotFound() : Ok(user);
         }
 
+        public static string Hash(string password)
+        {
+
+            byte[] salt = Convert.FromBase64String("passwordSalt");
+
+            string hash = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                    password: password,
+                    salt: salt,
+                    prf: KeyDerivationPrf.HMACSHA256,
+                    iterationCount: 100000,
+                    numBytesRequested: 256 / 8)
+                );
+
+
+            return $"{Convert.ToBase64String(salt)}:{hash}";
+        }
+
+        //public bool VerifyPassword(string userInput, string existingPassword)
+        //{
+
+        //    var inputArray = existingPassword.Split(":");
+
+        //    byte[] salt = Convert.FromBase64String(inputArray[0]);
+        //    var existingHash = inputArray[1];
+
+        //    var hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+        //            password: userInput,
+        //            salt: salt,
+        //            prf: KeyDerivationPrf.HMACSHA256,
+        //            iterationCount: 100000,
+        //            numBytesRequested: 256 / 8)
+        //        );
+
+
+        //    return existingHash == hashed;
+        //}
+
         [HttpPost("/{user}")]
         public async Task<ActionResult> Login(string user, string password)
         {
-            var useri = await _context.Users.FirstAsync(x => x.Username == user && x.Password == password);
+            var useri = await _context.Users.FirstAsync(x => x.Username == user && x.Password == Hash(password));
             if(user == null)
             {
                 return NotFound();
             }
-            return Ok(useri);
+            return Ok(useri.Id);
         }
 
         [HttpGet("username/{username}")]
@@ -49,14 +88,21 @@ namespace elefanti60.Controllers
         {
             return await _context.Users.Where(x => x.Username.ToLower().Contains(username)).ToListAsync();
         }
-
-
-
+       
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> Create(User user)
         {
-            //user.Password = 
+            var usernames = await _context.Users.ToListAsync();
+            foreach (var username in usernames)
+            {
+                if(username.Username.ToLower() == user.Username)
+                {
+                    return BadRequest("This user already exists.");
+                }
+            }
+
+            user.Password = Hash(user.Password);
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
 
