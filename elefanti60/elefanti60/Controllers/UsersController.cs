@@ -56,6 +56,7 @@ namespace elefanti60.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> Create(User user)
         {
+            //user.Password = 
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
 
