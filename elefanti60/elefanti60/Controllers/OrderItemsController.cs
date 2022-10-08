@@ -17,15 +17,21 @@ namespace elefanti60.Controllers
             _context = context;
         }
 
+        [HttpGet("{id}")]
+        public async Task<IEnumerable<OrderItem>> Get(int id)
+        {
+            return await _context.OrderItems.Where(orderItem => orderItem.UserId == id).ToListAsync();
+        }
+
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult> Create([FromBody] CartItemDTO orderItemDTO)
+        public async Task<ActionResult> Create([FromBody] OrderItemDTO orderItemDTO)
         {
 
             var user = _context.Users.FirstOrDefault(x => x.Id == orderItemDTO.UserId);
-            var product = _context.Products.FirstOrDefault(x => x.Id == orderItemDTO.ProductId);
             var list = await _context.CartItems.Where(cartItem => cartItem.UserId == user.Id).ToListAsync();
+
             OrderItem orderItem = null;
 
             foreach (var item in list)
@@ -37,15 +43,15 @@ namespace elefanti60.Controllers
                     Quantity = item.Quantity,
                     Price = item.Price,
                     Total = item.Total
-
                 };
+
+                _context.OrderItems.Add(orderItem);
+                _context.CartItems.Remove(item);
+                await _context.SaveChangesAsync();
             }
 
-            _context.OrderItems.Add(orderItem);
-            await _context.SaveChangesAsync();
 
-            //await _context.CartItems.RemoveRange();
-            return Ok(orderItem);
+            return Ok();
         }
     }
 }

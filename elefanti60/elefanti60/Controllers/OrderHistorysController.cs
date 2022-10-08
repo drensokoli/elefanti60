@@ -1,6 +1,5 @@
 ﻿using elefanti60.Data;
-using elefanti60.Migrations;
-//using elefanti60.Models;
+using elefanti60.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,18 +22,20 @@ namespace elefanti60.Controllers
 
             var list = await _context.OrderItems.Where(orderItem => orderItem.UserId == id).ToListAsync();
             decimal total = 0;
+            
             foreach (var item in list)
             {
                 total = total + item.Total;
             }
 
-            OrderHistory order = new OrderHistory
+            Models.OrderHistory order = new Models.OrderHistory
             {
                 OrderedItems = list,
                 UserId = id,
                 Total = total
             };
-            return Ok(order);
+
+            return order;   
         }
     }
 }

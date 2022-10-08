@@ -6,6 +6,5 @@
         public int UserId { get; set; }
         public IEnumerable<OrderItem> OrderedItems { get; set; }
         public decimal Total { get; set; }
-        public DateTime Created { get; set; } = DateTime.Now;
     }
 }

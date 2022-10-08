@@ -22,16 +22,19 @@ namespace elefanti60.Controllers
 
             var list = await _context.CartItems.Where(cartItem => cartItem.UserId == id).ToListAsync();
             decimal total = 0;
+
             foreach (var item in list)
             {
                 total = total + item.Total;
             }
+
             ShoppingCart cart = new ShoppingCart
             {
                 Items = list,
                 UserId = id,
                 Total = total
             };
+
             return cart;
         }
 
