@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "izN0csAp6c00OESM2J1+c5x0cm5w2DkVW8uubc0XqBTgTNa2dBF9X6XJQhjhrOVc6ydbVzeZJ5y1iorQftm8BA==",
+  "dgSpecHash": "gBBiH18IVH1mHqscMm1Z/5PskdcL6IiFdn5I+gMfk2BVyYqoY8WEZJ40ArVy9GLsUR44DMGA/1cJZbJ8sfkYhA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bleda\\source\\repos\\ProductEntity\\elefanti60\\elefanti60\\elefanti60.csproj",
+  "projectFilePath": "C:\\Users\\bleda\\source\\repos\\UnitTests\\elefanti60\\elefanti60\\elefanti60.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bleda\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\bleda\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

@@ -12,10 +12,16 @@ namespace elefanti60.Controllers
     {
         private readonly AppDbContext _context;
         private Task<IEnumerable<Product>> testProducts;
+        private AppDbContext context;
 
         public ProductsController(Task<IEnumerable<Product>> testProducts)
         {
             this.testProducts = testProducts;
+        }
+
+        public ProductsController(AppDbContext context)
+        {
+            this.context = context;
         }
 
         [HttpGet]

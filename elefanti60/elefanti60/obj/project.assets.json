@@ -2230,11 +2230,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bleda\\source\\repos\\ProductEntity\\elefanti60\\elefanti60\\elefanti60.csproj",
+      "projectUniqueName": "C:\\Users\\bleda\\source\\repos\\UnitTests\\elefanti60\\elefanti60\\elefanti60.csproj",
       "projectName": "elefanti60",
-      "projectPath": "C:\\Users\\bleda\\source\\repos\\ProductEntity\\elefanti60\\elefanti60\\elefanti60.csproj",
+      "projectPath": "C:\\Users\\bleda\\source\\repos\\UnitTests\\elefanti60\\elefanti60\\elefanti60.csproj",
       "packagesPath": "C:\\Users\\bleda\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bleda\\source\\repos\\ProductEntity\\elefanti60\\elefanti60\\obj\\",
+      "outputPath": "C:\\Users\\bleda\\source\\repos\\UnitTests\\elefanti60\\elefanti60\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bleda\\AppData\\Roaming\\NuGet\\NuGet.Config",

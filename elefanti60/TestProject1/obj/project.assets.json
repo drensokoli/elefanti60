@@ -8626,11 +8626,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bleda\\source\\repos\\ProductEntity\\elefanti60\\TestProject1\\TestProject1.csproj",
+      "projectUniqueName": "C:\\Users\\bleda\\source\\repos\\UnitTests\\elefanti60\\TestProject1\\TestProject1.csproj",
       "projectName": "TestProject1",
-      "projectPath": "C:\\Users\\bleda\\source\\repos\\ProductEntity\\elefanti60\\TestProject1\\TestProject1.csproj",
+      "projectPath": "C:\\Users\\bleda\\source\\repos\\UnitTests\\elefanti60\\TestProject1\\TestProject1.csproj",
       "packagesPath": "C:\\Users\\bleda\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bleda\\source\\repos\\ProductEntity\\elefanti60\\TestProject1\\obj\\",
+      "outputPath": "C:\\Users\\bleda\\source\\repos\\UnitTests\\elefanti60\\TestProject1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bleda\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8647,8 +8647,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\bleda\\source\\repos\\ProductEntity\\elefanti60\\elefanti60\\elefanti60.csproj": {
-              "projectPath": "C:\\Users\\bleda\\source\\repos\\ProductEntity\\elefanti60\\elefanti60\\elefanti60.csproj"
+            "C:\\Users\\bleda\\source\\repos\\UnitTests\\elefanti60\\elefanti60\\elefanti60.csproj": {
+              "projectPath": "C:\\Users\\bleda\\source\\repos\\UnitTests\\elefanti60\\elefanti60\\elefanti60.csproj"
             }
           }
         }
