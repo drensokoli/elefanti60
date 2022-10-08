@@ -28,7 +28,6 @@ namespace elefanti60.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> Create([FromBody] OrderItemDTO orderItemDTO)
         {
-
             var user = _context.Users.FirstOrDefault(x => x.Id == orderItemDTO.UserId);
             var list = await _context.CartItems.Where(cartItem => cartItem.UserId == user.Id).ToListAsync();
 
@@ -36,6 +35,7 @@ namespace elefanti60.Controllers
 
             foreach (var item in list)
             {
+                var product = _context.Products.FirstOrDefault(x => x.Id == item.ProductId);
                 orderItem = new OrderItem()
                 {
                     UserId = item.UserId,
@@ -45,12 +45,15 @@ namespace elefanti60.Controllers
                     Total = item.Total
                 };
 
+                if (orderItem.Quantity > product.Stock)
+                {
+                    return BadRequest("Stock: " + product.Stock);
+                }
+                product.Stock -= orderItem.Quantity;
                 _context.OrderItems.Add(orderItem);
                 _context.CartItems.Remove(item);
                 await _context.SaveChangesAsync();
             }
-
-
             return Ok();
         }
     }
