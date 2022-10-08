@@ -36,7 +36,6 @@ namespace elefanti60.Controllers
                 return NotFound();
             }
 
-
             CartItem cartItem = new CartItem()
             {
                 UserId = cartitemdto.UserId,
@@ -46,10 +45,44 @@ namespace elefanti60.Controllers
                 Total = cartitemdto.Quantity * product.Price
             };
 
+
+            if (product.Stock < cartItem.Quantity)
+            {
+                return BadRequest("Stock: "+product.Stock);
+            }
+
             _context.CartItems.Add(cartItem);
             await _context.SaveChangesAsync();
 
             return Ok(cartItem);
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> Update(int id, CartItem cartItem)
+        {
+            if (id != cartItem.Id) return BadRequest();
+            cartItem.Total = cartItem.Price * cartItem.Quantity;
+            _context.Entry(cartItem).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var cartItemToDelete = await _context.CartItems.FindAsync(id);
+
+            if (cartItemToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _context.CartItems.Remove(cartItemToDelete);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }
