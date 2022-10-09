@@ -12,7 +12,6 @@ namespace elefanti60.Controllers
     {
         private readonly AppDbContext _context;
         private Task<IEnumerable<Product>> testProducts;
-        private AppDbContext context;
 
         public ProductsController(Task<IEnumerable<Product>> testProducts)
         {
@@ -21,7 +20,7 @@ namespace elefanti60.Controllers
 
         public ProductsController(AppDbContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         [HttpGet]
