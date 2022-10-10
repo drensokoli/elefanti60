@@ -15,7 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(
 
 builder.Services.AddCors(p => p.AddPolicy("corspolicy", policy =>
 {
-    policy.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
+    policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
 }));
 
 var app = builder.Build();

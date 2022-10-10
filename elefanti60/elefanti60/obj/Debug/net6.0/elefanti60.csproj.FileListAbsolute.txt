@@ -126,3 +126,9 @@ C:\Users\Admin\elefanti60\elefanti60\elefanti60\bin\Debug\net6.0\System.Web.Http
 C:\Users\Admin\elefanti60\elefanti60\elefanti60\bin\Debug\net6.0\System.Web.Http.Cors.dll
 C:\Users\Admin\elefanti60\elefanti60\elefanti60\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\Admin\elefanti60\elefanti60\elefanti60\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+F:\Dren\LIFE\Periudha II\elefanti60\elefanti60\elefanti60\bin\Debug\net6.0\System.Web.Cors.dll
+F:\Dren\LIFE\Periudha II\elefanti60\elefanti60\elefanti60\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+F:\Dren\LIFE\Periudha II\elefanti60\elefanti60\elefanti60\bin\Debug\net6.0\System.Web.Http.dll
+F:\Dren\LIFE\Periudha II\elefanti60\elefanti60\elefanti60\bin\Debug\net6.0\System.Web.Http.Cors.dll
+F:\Dren\LIFE\Periudha II\elefanti60\elefanti60\elefanti60\bin\Debug\net6.0\Newtonsoft.Json.dll
+F:\Dren\LIFE\Periudha II\elefanti60\elefanti60\elefanti60\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
