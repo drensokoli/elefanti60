@@ -48,7 +48,7 @@ namespace elefanti60.Controllers
 
             if (item != null)
             {
-                if (product.Stock <= item.Quantity)
+                if (product.Stock < item.Quantity + cartitemdto.Quantity)
                 {
                     return BadRequest("Stock: " + product.Stock);
                 }
