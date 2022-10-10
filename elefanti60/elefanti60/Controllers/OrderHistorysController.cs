@@ -16,6 +16,8 @@ namespace elefanti60.Controllers
             _context = context;
         }
 
+        // Returns all Items that the User has Ordered
+        // and the total of those ordered items
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderHistory>> Get(int id)
         {

@@ -16,6 +16,7 @@
         }
         public string Address { get; set; }
         public decimal CardNumber { get; set; }
+        public decimal Amount { get; set; }
         
     }
 }

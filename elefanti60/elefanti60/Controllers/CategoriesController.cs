@@ -10,19 +10,22 @@ namespace elefanti60.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
+        //alfa
         private readonly AppDbContext _context;
         public CategoriesController(AppDbContext context)
         {
             _context = context;
         }
 
+        // Returns all existing categories
         [HttpGet]
         public async Task<IEnumerable<Category>> Get()
         {
+            var test = 5;
             return await _context.Categories.ToListAsync();
         }
 
-
+        // Creates a new category
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> Create(Category category)
@@ -33,19 +36,21 @@ namespace elefanti60.Controllers
             return Ok(category);
         }
 
+        // Updates the name of an existing category
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> Update(int id, Category category)
         {
             if (id != category.Id) return BadRequest();
+            //drop sdf
             _context.Entry(category).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
         }
-
+        
+        // Deletes and existing category
         [HttpDelete("{id}")]
-
         public async Task<ActionResult> Delete(int id)
         {
             var categoryToDelete = await _context.Categories.FindAsync(id);

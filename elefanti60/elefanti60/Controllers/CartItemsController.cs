@@ -18,12 +18,21 @@ namespace elefanti60.Controllers
             _context = context;
         }  
 
+        // Returns all items in users cart
         [HttpGet("{id}")]
         public async Task<IEnumerable<CartItem>> Get(int id)
         {
             return await _context.CartItems.Where(cartItem =>  cartItem.UserId == id).ToListAsync();
         }
 
+        // Adds a new product to cart
+        // Function checks if this product already exists in the users shopping cart
+        // If product exists in cart, it checks if the amount about to be added is bigger than the product stock.
+        // It respons accordingly by:
+        // - Updating existing cart item,
+        // - Creating a new cart item,
+        // - Or returning a BadRequest() Action Result
+        // 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> Create([FromBody] CartItemDTO cartitemdto)
@@ -32,13 +41,10 @@ namespace elefanti60.Controllers
             var product = _context.Products.FirstOrDefault(x => x.Id == cartitemdto.ProductId);
             var item =  _context.CartItems.FirstOrDefault(x => x.ProductId == cartitemdto.ProductId && x.UserId == cartitemdto.UserId);
 
-
             if (user == null || product == null)
             {
                 return NotFound();
             }
-
-
 
             if (item != null)
             {
@@ -48,7 +54,6 @@ namespace elefanti60.Controllers
                 }
                 else
                 {
-
                     item.Quantity += cartitemdto.Quantity;
                     item.Total = item.Price * item.Quantity;
                     _context.Entry(item).State = EntityState.Modified;
@@ -71,18 +76,13 @@ namespace elefanti60.Controllers
                 Total = cartitemdto.Quantity * product.Price
             };
 
-            //if (product.Stock < cartItem.Quantity)
-            //{
-            //    return BadRequest("Stock: "+product.Stock);
-            //}
-
-
             _context.CartItems.Add(cartItem);
             await _context.SaveChangesAsync();
 
             return Ok(cartItem);
         }
 
+        // Updates a specific cart items amount and the shopping carts total based on the changes
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -102,6 +102,7 @@ namespace elefanti60.Controllers
             return NoContent();
         }
 
+        // Removes cart item from shopping cart
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

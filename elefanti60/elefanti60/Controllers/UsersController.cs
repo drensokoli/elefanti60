@@ -24,7 +24,8 @@ namespace elefanti60.Controllers
             return await _context.Users.ToListAsync();
         }
 
-
+        // Asks if user with this ID exists.
+        // Then returns their information if they do. 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -35,6 +36,7 @@ namespace elefanti60.Controllers
             return user == null ? NotFound() : Ok(user);
         }
 
+        //Hash and salt password method
         public static string Hash(string password)
         {
 
@@ -52,6 +54,9 @@ namespace elefanti60.Controllers
             return $"{Convert.ToBase64String(salt)}:{hash}";
         }
 
+
+        // Login method
+        // Checks if the username and hashed password on input match the ones in the database
         [HttpPost("/{user}")]
         public async Task<ActionResult> Login(string user, string password)
         {
@@ -60,15 +65,19 @@ namespace elefanti60.Controllers
             {
                 return NotFound();
             }
-            return Ok(useri);
+            return Ok(useri.Id);
         }
 
+        // Returns all users containing characters given on input
         [HttpGet("username/{username}")]
         public async Task<IEnumerable<User>> GetByTitle(string username)
         {
             return await _context.Users.Where(x => x.Username.ToLower().Contains(username)).ToListAsync();
         }
        
+        // Sign up feature
+        // Checks if a user with the same username exists in the database
+        // If not, it creates a new user and hashes the password given on input
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult> Create(User user)
@@ -89,6 +98,7 @@ namespace elefanti60.Controllers
             return CreatedAtAction(nameof(GetByID), new { id = user.Id }, user);
         }
 
+        // Update user info and save changes
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -100,8 +110,8 @@ namespace elefanti60.Controllers
             return NoContent();
         }
 
+        // Ability to find user by id and delete user
         [HttpDelete("{id}")]
-
         public async Task<ActionResult> Delete(int id)
         {
             var productToDelete = await _context.Products.FindAsync(id);

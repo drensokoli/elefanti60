@@ -16,6 +16,8 @@ namespace elefanti60.Controllers
             _context = context;
         }
 
+        // Returns all Cart Items assigned to the ID given on input
+        // and the total of those cart items
         [HttpGet("{id}")]
         public async Task<ShoppingCart> Get(int id)
         {
