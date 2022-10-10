@@ -38,6 +38,30 @@ namespace elefanti60.Controllers
                 return NotFound();
             }
 
+
+
+            if (item != null)
+            {
+                if (product.Stock <= item.Quantity)
+                {
+                    return BadRequest("Stock: " + product.Stock);
+                }
+                else
+                {
+
+                    item.Quantity += cartitemdto.Quantity;
+                    item.Total = item.Price * item.Quantity;
+                    _context.Entry(item).State = EntityState.Modified;
+                    await _context.SaveChangesAsync();
+                    return Ok(item);
+                }
+            }
+
+            if (product.Stock < cartitemdto.Quantity)
+            {
+                return BadRequest("Stock: " + product.Stock);
+            }
+
             CartItem cartItem = new CartItem()
             {
                 UserId = cartitemdto.UserId,
@@ -52,20 +76,6 @@ namespace elefanti60.Controllers
             //    return BadRequest("Stock: "+product.Stock);
             //}
 
-            if (item != null)
-            {
-                item.Quantity += cartitemdto.Quantity;
-
-                if (product.Stock < item.Quantity)
-                {
-                    return BadRequest("Stock: " + product.Stock);
-                }
-
-                item.Total = item.Price * item.Quantity;
-                _context.Entry(item).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-                return Ok(item);
-            }
 
             _context.CartItems.Add(cartItem);
             await _context.SaveChangesAsync();

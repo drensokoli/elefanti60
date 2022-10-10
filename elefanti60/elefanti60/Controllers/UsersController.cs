@@ -60,7 +60,7 @@ namespace elefanti60.Controllers
             {
                 return NotFound();
             }
-            return Ok(useri.Id);
+            return Ok(useri);
         }
 
         [HttpGet("username/{username}")]
