@@ -144,3 +144,8 @@ C:\Users\bleda\source\repos\UnitTests\elefanti60\TestProject2\obj\Debug\net6.0\r
 C:\Users\bleda\source\repos\UnitTests\elefanti60\TestProject2\obj\Debug\net6.0\TestProject2.pdb
 C:\Users\bleda\source\repos\UnitTests\elefanti60\TestProject2\obj\Debug\net6.0\TestProject2.genruntimeconfig.cache
 C:\Users\bleda\source\repos\UnitTests\elefanti60\TestProject2\obj\Debug\net6.0\ref\TestProject2.dll
+C:\Users\bleda\source\repos\UnitTests\elefanti60\TestProject2\bin\Debug\net6.0\AutoFixture.dll
+C:\Users\bleda\source\repos\UnitTests\elefanti60\TestProject2\bin\Debug\net6.0\Castle.Core.dll
+C:\Users\bleda\source\repos\UnitTests\elefanti60\TestProject2\bin\Debug\net6.0\Fare.dll
+C:\Users\bleda\source\repos\UnitTests\elefanti60\TestProject2\bin\Debug\net6.0\FluentAssertions.dll
+C:\Users\bleda\source\repos\UnitTests\elefanti60\TestProject2\bin\Debug\net6.0\Moq.dll

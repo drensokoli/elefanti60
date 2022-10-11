@@ -19,6 +19,5 @@ namespace elefanti60.Data
 
         public DbSet<OrderHistory> OrderHistory { get; set; }
 
-
     }
 }

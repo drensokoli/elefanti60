@@ -11,12 +11,6 @@ namespace elefanti60.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly AppDbContext _context;
-        private Task<IEnumerable<Product>> testProducts;
-
-        public ProductsController(Task<IEnumerable<Product>> testProducts)
-        {
-            this.testProducts = testProducts;
-        }
 
         public ProductsController(AppDbContext context)
         {
@@ -44,7 +38,7 @@ namespace elefanti60.Controllers
         [HttpGet("Title/{title}")]
         public async Task<IEnumerable<Product>> GetByTitle(string title)
         {
-            return await _context.Products.Where(x => x.Title.ToLower().Contains(title) ).ToListAsync();
+            return await _context.Products.Where(x => x.Title.ToLower().Contains(title)).ToListAsync();
         }
 
 

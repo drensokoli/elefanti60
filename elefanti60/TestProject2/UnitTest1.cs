@@ -3,9 +3,10 @@ using elefanti60.Controllers;
 using elefanti60.Data;
 using elefanti60.Models;
 using Microsoft.EntityFrameworkCore;
-using Assert = Xunit.Assert;
-using Microsoft.IdentityModel.Tokens;
 using Moq;
+using AutoFixture;
+using FluentAssertions;
+using Assert = Xunit.Assert;
 
 namespace TestProject2
 {
@@ -13,17 +14,29 @@ namespace TestProject2
     public class UnitTest1
     {
         private readonly ProductsController _sut;
-        private readonly Mock<AppDbContext> _appDBContextMock = new Mock<AppDbContext>();
+        private readonly Mock<AppDbContext> _appDBContextMock = new();
+        private readonly IFixture _fixture;
         
         public UnitTest1()
         {
+            _fixture = new Fixture();
+            _appDBContextMock = _fixture.Freeze<Mock<AppDbContext>>();
             _sut = new ProductsController(_appDBContextMock.Object);
+
         }
 
+
         [Fact]
-        public async Task GetById_ShouldReturnProduct_WhenProductExists()
+        public async Task GetById_ShouldReturnProduct()
         {
-            
+            //Arrange
+            var id = 1;
+            var productsMock = _fixture.Create<IEnumerable<Product>>();
+            _appDBContextMock.Setup(x => x.Products.FindAsync(It.IsAny<int>()));
+            //Act
+            var result = await _sut.GetByID(id);
+            //Assert
+            result.Should().NotBeNull();
         }
         //public async Task GetProductsTest()
         //{
