@@ -1,4 +1,5 @@
 ﻿using elefanti60.Data;
+using elefanti60.Interfaces;
 using elefanti60.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,16 +13,16 @@ namespace elefanti60.Controllers
     public class CartItemsController : ControllerBase
     {
         private readonly AppDbContext _context;
-
-        public CartItemsController(AppDbContext context)
+        private readonly ICartItemsService _cartItemsService;
+        public CartItemsController(ICartItemsService cartItemsServices)
         {
-            _context = context;
+            _cartItemsService = cartItemsServices;
         }  
 
         [HttpGet("{id}")]
-        public async Task<IEnumerable<CartItem>> Get(int id)
+        public async Task<IEnumerable<CartItem>> GetById(int id)
         {
-            return await _context.CartItems.Where(cartItem =>  cartItem.UserId == id).ToListAsync();
+            return await _cartItemsService.GetById(id);
         }
 
         [HttpPost]

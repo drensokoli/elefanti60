@@ -1,8 +1,11 @@
 ﻿using elefanti60.Data;
+using elefanti60.Interfaces;
 using elefanti60.Models;
+using elefanti60.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 
 namespace elefanti60.Controllers
 {
@@ -11,10 +14,10 @@ namespace elefanti60.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly AppDbContext _context;
-
-        public ProductsController(AppDbContext context)
+        private readonly IProductsService _productsService;
+        public ProductsController(IProductsService productsServices)
         {
-            _context = context;
+            _productsService = productsServices;
         }
 
         [HttpGet]
@@ -26,21 +29,18 @@ namespace elefanti60.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> GetByID(int id)
+
+        public async Task<ActionResult> GetById(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-            
+            var product = await _productsService.GetById(id);  
             return product == null ? NotFound() : Ok(product);
         }
-
-
 
         [HttpGet("Title/{title}")]
         public async Task<IEnumerable<Product>> GetByTitle(string title)
         {
             return await _context.Products.Where(x => x.Title.ToLower().Contains(title)).ToListAsync();
         }
-
 
 
         [HttpGet("Category/{category}")]
@@ -63,7 +63,7 @@ namespace elefanti60.Controllers
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetByID), new { id = product.Id }, product);
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
 
 
