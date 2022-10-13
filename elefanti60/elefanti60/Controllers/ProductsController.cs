@@ -23,14 +23,14 @@ namespace elefanti60.Controllers
         [HttpGet]
         public async Task<IEnumerable<Product>> Get()
         {
-            return await _context.Products.ToListAsync();
+            return await _productsService.Get();
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-        public async Task<ActionResult> GetById(int id)
+        public async Task<ActionResult<Product>> GetById(int id)
         {
             var product = await _productsService.GetById(id);  
             return product == null ? NotFound() : Ok(product);
@@ -39,7 +39,7 @@ namespace elefanti60.Controllers
         [HttpGet("Title/{title}")]
         public async Task<IEnumerable<Product>> GetByTitle(string title)
         {
-            return await _context.Products.Where(x => x.Title.ToLower().Contains(title)).ToListAsync();
+            return await _productsService.GetByTitle(title);
         }
 
 
@@ -82,7 +82,7 @@ namespace elefanti60.Controllers
 
         public async Task<ActionResult> Delete(int id)
         {
-            var productToDelete = await _context.Products.FindAsync(id);
+            var productToDelete = await _productsService.Delete(id);
 
             if (productToDelete == null)
             {

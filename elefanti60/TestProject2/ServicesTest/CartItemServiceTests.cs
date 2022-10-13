@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 namespace TestProject2.ServicesTest
 {
     [TestClass]
-    public class CartItemServiceTest
+    public class CartItemServiceTests
     {
         
             private readonly Mock<ICartItemsService> _cartItemsServices = new();
             private readonly CartItemsController _cartItemsController;
 
-            public CartItemServiceTest()
+            public CartItemServiceTests()
             {
                 _cartItemsController = new CartItemsController(_cartItemsServices.Object);
             }
