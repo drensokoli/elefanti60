@@ -1,5 +1,7 @@
 ﻿using elefanti60.Data;
+using elefanti60.Interfaces;
 using elefanti60.Models;
+using elefanti60.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +13,10 @@ namespace elefanti60.Controllers
     public class UsersController : ControllerBase
     {
         private readonly AppDbContext _context;
-        public UsersController(AppDbContext context)
+        private readonly IUsersService _usersService;
+        public UsersController(IUsersService productsServices)
         {
-            _context = context;
+            _usersService = productsServices;
         }
 
         [HttpGet]
@@ -28,7 +31,7 @@ namespace elefanti60.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> GetByID(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _userService.GetByID(id);
 
             return user == null ? NotFound() : Ok(user);
         }
