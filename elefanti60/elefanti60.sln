@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "elefanti60", "elefanti60\elefanti60.csproj", "{A0E5528D-E011-4D5E-8F8F-1DA261D3FEE3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "elefanti60Tests", "TestProject1\elefanti60Tests.csproj", "{053C6198-C159-4250-B6FA-C7B71DD79EC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A0E5528D-E011-4D5E-8F8F-1DA261D3FEE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0E5528D-E011-4D5E-8F8F-1DA261D3FEE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0E5528D-E011-4D5E-8F8F-1DA261D3FEE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{053C6198-C159-4250-B6FA-C7B71DD79EC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{053C6198-C159-4250-B6FA-C7B71DD79EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{053C6198-C159-4250-B6FA-C7B71DD79EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{053C6198-C159-4250-B6FA-C7B71DD79EC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

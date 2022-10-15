@@ -12,8 +12,8 @@ using elefanti60.Data;
 namespace elefanti60.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221008102000_RoleProp")]
-    partial class RoleProp
+    [Migration("20221015104046_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -195,8 +195,14 @@ namespace elefanti60.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("CardNumber")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("DOB")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -211,10 +217,6 @@ namespace elefanti60.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
