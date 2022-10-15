@@ -74,6 +74,9 @@ namespace elefanti60.Controllers
             CartItem cartItem = new CartItem()
             {
                 UserId = cartitemdto.UserId,
+                Title = product.Title,
+                Description = product.Description,
+                Image = product.Image,
                 ProductId = cartitemdto.ProductId,         
                 Price = product.Price,
                 Total = cartitemdto.Quantity * product.Price
