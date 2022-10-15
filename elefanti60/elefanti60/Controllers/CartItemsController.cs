@@ -77,7 +77,8 @@ namespace elefanti60.Controllers
                 Title = product.Title,
                 Description = product.Description,
                 Image = product.Image,
-                ProductId = cartitemdto.ProductId,         
+                ProductId = cartitemdto.ProductId,    
+                Quantity = cartitemdto.Quantity,
                 Price = product.Price,
                 Total = cartitemdto.Quantity * product.Price
             };
