@@ -50,6 +50,9 @@ namespace elefanti60.Controllers
                     UserId = item.UserId,
                     ProductId = item.ProductId,
                     Quantity = item.Quantity,
+                    Title = item.Title,
+                    Description = item.Description,
+                    Image = item.Image,
                     Price = item.Price,
                     Total = item.Total
                 };  
