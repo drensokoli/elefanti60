@@ -14,7 +14,7 @@ using Moq;
 namespace TestProject1
 {
     [TestClass]
-     public class UsersControllerTests:TestBaseClass
+    public class UsersControllerTests : TestBaseClass
     {
 
 
@@ -34,11 +34,11 @@ namespace TestProject1
                 Address = "Kosovo",
                 CardNumber = 123,
                 Amount = 5,
-                DOB = new DateTime(2000,11,14),
+                DOB = new DateTime(2000, 11, 14),
                 Email = "Test@Gjirafa.com",
                 Password = "11112222",
                 Username = "Test Test"
-                
+
             };
 
             //Create method test
@@ -49,7 +49,6 @@ namespace TestProject1
             var userModel = (User)result.Value;
 
             //Get method test
-
             var get = controller.Get();
             get.Should().NotBeNull();
 
@@ -61,9 +60,11 @@ namespace TestProject1
             var getByTitle = controller.GetByTitle(userModel.Username).Result;
             getByTitle.Equals(userModel.Username);
 
-            //Login method test
-            var login = (OkObjectResult)controller.Login(userModel.Username, userModel.Password).Result;
-            login.StatusCode.Equals((int)HttpStatusCode.OK);
+            //Update method test
+            var update = (NoContentResult)controller.Update(userModel.Id, userModel).Result;
+            update.StatusCode.Equals((int)HttpStatusCode.NoContent);
+
+
 
         }
 
@@ -84,13 +85,12 @@ namespace TestProject1
             var controller = new UsersController(_appDbContext);
 
             var id = 999;
-            
+
             var result = (NotFoundResult)await controller.GetByID(id);
             result.StatusCode.Equals((int)HttpStatusCode.NotFound);
 
         }
-
-
-
+       
+        
     }
 }
