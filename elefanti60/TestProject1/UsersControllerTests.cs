@@ -90,6 +90,17 @@ namespace TestProject1
 
         }
 
+        [Fact]
+        public async Task Update_ShouldReturnBadRequest_WhenIdIsNotUserId()
+        {
+            var controller = new UsersController(_appDbContext);
+
+            var id = 999;
+            var user = new User { Id = 998 };
+
+            var result = (BadRequestResult)await controller.Update(id, user);
+            result.StatusCode.Equals((int)HttpStatusCode.BadRequest);
+        }
 
 
     }
