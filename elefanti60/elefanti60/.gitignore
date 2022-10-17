@@ -327,6 +327,10 @@ paket-files/
 __pycache__/
 *.pyc
 
+/bin/
+/obj/
+
+
 # Cake - Uncomment if you are using it
 # tools/**
 # !tools/packages.config
