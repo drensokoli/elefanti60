@@ -41,6 +41,10 @@ namespace elefanti60.Controllers
             var product = _context.Products.FirstOrDefault(x => x.Id == cartitemdto.ProductId);
             var item =  _context.CartItems.FirstOrDefault(x => x.ProductId == cartitemdto.ProductId && x.UserId == cartitemdto.UserId);
 
+            if (cartitemdto.Quantity == 0)
+            {
+                cartitemdto.Quantity = 1;
+            }
             if (user == null || product == null)
             {
                 return NotFound();
@@ -70,11 +74,16 @@ namespace elefanti60.Controllers
             CartItem cartItem = new CartItem()
             {
                 UserId = cartitemdto.UserId,
-                ProductId = cartitemdto.ProductId,
+                Title = product.Title,
+                Description = product.Description,
+                Image = product.Image,
+                ProductId = cartitemdto.ProductId,    
                 Quantity = cartitemdto.Quantity,
+                Stock = product.Stock,
                 Price = product.Price,
                 Total = cartitemdto.Quantity * product.Price
             };
+
 
             _context.CartItems.Add(cartItem);
             await _context.SaveChangesAsync();

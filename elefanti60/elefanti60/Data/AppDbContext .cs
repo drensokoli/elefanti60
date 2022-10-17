@@ -17,7 +17,6 @@ namespace elefanti60.Data
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ShoppingCart> Cart { get; set; }
-
         public DbSet<OrderHistory> OrderHistory { get; set; }
 
 

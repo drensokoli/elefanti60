@@ -3,6 +3,8 @@ using elefanti60.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Globalization;
 
 namespace elefanti60.Controllers
 {
@@ -50,7 +52,11 @@ namespace elefanti60.Controllers
                     UserId = item.UserId,
                     ProductId = item.ProductId,
                     Quantity = item.Quantity,
+                    Title = item.Title,
+                    Description = item.Description,
+                    Image = item.Image,
                     Price = item.Price,
+                    Created = DateTime.Now.ToString("dd-MMM-YYYY"),
                     Total = item.Total
                 };  
 

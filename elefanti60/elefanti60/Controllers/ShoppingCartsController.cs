@@ -27,7 +27,7 @@ namespace elefanti60.Controllers
 
             foreach (var item in list)
             {
-                total = total + item.Total;
+                total += item.Total;
             }
 
             ShoppingCart cart = new ShoppingCart
