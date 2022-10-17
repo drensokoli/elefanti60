@@ -41,6 +41,8 @@ namespace elefanti60Tests
 
         }
         [Fact]
+
+        // Delete method test when no cateogry found
         public async Task Delete_ShouldReturNotFound_WhenNoCategoryFound()
         {
             var controller = new CategoriesController(_appDbContext);
@@ -50,7 +52,10 @@ namespace elefanti60Tests
             var result = (NotFoundResult)await controller.Delete(id);
             result.StatusCode.Equals((int)HttpStatusCode.NotFound);
         }
+
         [Fact]
+
+        // Update method test when Id is not the category id
         public async Task Update_ShouldReturnBadRequest_WhenNoIdIsNotCategoryId()
         {
             var controller = new CategoriesController(_appDbContext);
