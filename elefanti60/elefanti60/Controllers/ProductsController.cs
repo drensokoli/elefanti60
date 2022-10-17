@@ -81,7 +81,7 @@ namespace elefanti60.Controllers
 
         // Deletes product from database
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var productToDelete = await _context.Products.FindAsync(id);
 

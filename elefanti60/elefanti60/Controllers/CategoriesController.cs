@@ -20,7 +20,6 @@ namespace elefanti60.Controllers
         [HttpGet]
         public async Task<IEnumerable<Category>> Get()
         {
-            var test = 5;
             return await _context.Categories.ToListAsync();
         }
 
