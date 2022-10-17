@@ -10,7 +10,6 @@ namespace elefanti60.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        //alfa
         private readonly AppDbContext _context;
         public CategoriesController(AppDbContext context)
         {
