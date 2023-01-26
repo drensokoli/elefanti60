@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  elefanti60:
+    ports:
+     - "49578:80"
+    build: ../elefanti60/
+    environment:
+     - ASPNETCORE_ENVIRONMENT=Development
